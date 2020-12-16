@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Building Project"
                 bat '''
-                mvn clean install
+                mvn clean package install
                 '''
             }
         }
