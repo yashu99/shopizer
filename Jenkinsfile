@@ -1,7 +1,7 @@
 pipeline {
     agent any
         tools {
-            maven 'MAVEN'
+            maven 'MAVEN_HOME'
             jdk 'JAVA_HOME'
         }
     stages {
@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo "Building Project"
                 bat '''
-                mvn clean install
+                mvn clean package install
                 '''
             }
         }
@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploy"
-                deploy adapters: [tomcat9(credentialsId: '476ef20f-d63d-420a-aef1-4a3ddfa1a9c4', path: '', url: 'http://localhost:8080')], contextPath: 'Shopizer', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: '30c2ac53-8dd1-4973-8e04-f96fed5a789f', path: '', url: 'http://localhost:8081')], contextPath: 'Shopizer', war: '**/*.war'
             }
         }
     }
